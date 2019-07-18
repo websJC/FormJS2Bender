@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro de Usuario validado con JS. HTML5 + Vanilla JS + Materialize by WebsJC</title>
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/>
+    <meta name="theme-color" content="#ff6600"/>
+  <script type="text/javascript" src="valida.js"></script>
+  <style type="text/css">
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+}
+.col.s6 > .btn {
+   width: 100%;
+}
+.row {margin-bottom: 10px;}
+
+.ngl {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+}
+.container {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border: 1px solid #26a69a;
+  width: 80%;
+  height: auto;
+  box-sizing: border-box;
+  position: relative;
+  animation: showUp 0.5s cubic-bezier(0.18, 1.3, 1, 1) forwards;
+}
+@keyframes showUp {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mifieldset {
+  border: 1px solid #ff3d00;
+  text-align: right;
+  font-weight: bold;
+}
+#imagenEstado {
+  height: 200px;
+}
+.contenedor {
+  /*background-image: url("img/fondologin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.alto {
+  height: 100%;
+}
+.btn-group {
+  display: inline-flex;
+}
+
+main {
+  background-image: url("img/fondologin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}
+.brand-logo {
+  margin-left: 10px;
+  padding: 10px 10px;
+  padding-left: 10px;
+}
+</style>  
+
+</head>
+<body>
+<header>
+    <nav>
+    <div class="nav-wrapper teal darken-3">
+      <a href="#" class="brand-logo"><img src="https://websjc.com/wp-content/uploads/2018/09/DESARROLLO-WEBJosep-Conesa-Isotipo-e1542303064663.png" width="30px" height="30px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"><i class="material-icons">search</i></a></li>
+        <li><a href="#"><i class="material-icons">view_module</i></a></li>
+        <li><a href="#"><i class="material-icons">refresh</i></a></li>
+        <li><a href="#"><i class="material-icons">more_vert</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+<div class="contenedor">
+<div class="container">
+  
+  <div class="row">
+    <div class="col s12 m12 l8">
+      <!-- Formulario -->
+      <form class="" method="post" id="contacto" name="contacto" onsubmit="return valida_envia();">
+        <fieldset class="mifieldset">
+          <legend class="card-panel deep-orange accent-3 white-text text-darken-2">Datos de Registro</legend>
+        
+            <!-- Campos formulario -->
+          <!-- Usuario -->
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">assignment_ind</i>
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" onkeyup="pasaValor('usuario')"/ autofocus accesskey="1"/>
+            <span id="helper-text-usuario"></span>
+            <i id="iconUserHelp" class="material-icons left tiny">info_outline</i>
+          </div>
+          <!-- Telefono -->
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">phone</i>
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name="telefono" onkeyup="pasaValor('telefono')"/>
+            <span id="helper-text-tel"></span>
+            <i id="iconTelHelp" class="material-icons left tiny">info_outline</i>
+          </div>
+          <!-- Edad -->
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">date_range</i>
+            <input type="text" name="edad" class="datepicker" id="datepicker" onkeyup="pasaValor('edad')"/ placeholder="+18?">
+           <span id="helper-text-edad"></span>
+           <i id="iconEdadHelp" class="material-icons left tiny">info_outline</i>
+          </div>
+          <!-- Email -->
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">email</i>
+            <label for="correu">Email:</label>
+            <input type="text" id="correu" name="correu" onkeyup="pasaValor('correu');"/>
+            <span id="helper-text-mail"></span>
+            <i id="iconEmailHelp" class="material-icons left tiny">info_outline</i>
+          </div>
+          <!-- DNI -->
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">user</i>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" onkeyup="pasaValor('dni');"/>
+            <span id="helper-text-dni"></span>
+            <i id="iconDNIHelp" class="material-icons left tiny">info_outline</i>
+          </div>
+         <!-- aceptar -->
+          <div class="input-field left col m12 l12 s12">
+         <p>
+          <label>
+            <input name="acepto" type="checkbox" value="acepto" onclick="pasaValor('acepto');"/>
+            <span>Aceptar las condiciones de <strong>Privacidad</strong> para poder enviar el formulario</span>
+          </label>
+          </p>
+        
+          </div>
+       </fieldset>   
+
+          <!-- Botones enviar formulario -->
+          <div class="input-field col m12 l12 s12">
+             <div class="btn-group">
+                <button class="btn btn-medium teal darken-3 btn-register waves-effect waves-light s12 m12 l3" type="submit">Registrarse <i class="material-icons right">done</i>
+                </button>
+                <a class="btn btn-small red darken-3 waves-effect waves-light s12 m12 l3" onclick="avisoReset();">Borrar <i class="material-icons right">cancel</i></a>
+                <a class="btn btn-small lime darken-3 btn-register waves-effect waves-light s12 m12 l3" onclick="guardarDatos();" >Guardar Datos <i class="material-icons right">save</i></a>
+                <a class="btn btn-small deep-orange accent-3 btn-register waves-effect waves-light s12 m12 l3" onclick="obtenerDatos();">Recuperar Datos <i class="material-icons right">refresh</i></a>
+              </div>
+          </div>
+
+      </form>
+        
+     
+
+    </div><!-- Fin div form -->
+      
+   <!-- Status -->
+    <div class="col s12 m12 l4">
+          
+      <div class="card">
+        <div class="card-image">
+          <img id="imagenEstado">
+          
+        </div>
+        <div class="card-content">
+          <span class="card-title">Estado del Formulario</span>
+          <div id="info"></div>
+        </div>
+      </div>
+
+    </div><!--Fin Status -->
+
+  </div><!-- Fin Row -->
+  <!-- Boton badge overlay login -->
+    <div>
+    <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light deep-orange accent-3"><i class="material-icons">exit_to_app</i></a>
+    </div>
+</div><!-- Fin Contenedor -->
+
+</div><!-- Fin Container -->
+
+</main>
+<footer class="page-footer teal darken-3">
+    <div class="row">
+      <div class="col s12 m12 l12 center">
+           
+  <h4 class="">Validación Formulario con Vanilla JS | CSS Materialize | Sweet Alert JS</h4>
+  <i class="material-icons">code</i><p> by <a href="https://websjc.com" class="btn btn-medium deep-orange accent-3"><strong>WebsJC.COM</strong></a></p>
+
+      </div>
+    </div>
+</footer>
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="materialize/js/materialize.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="assets/js/alerts.js"></script>
+<script src="assets/js/datepicker.js"></script>
+</body>
+</html>
